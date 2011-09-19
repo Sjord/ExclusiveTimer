@@ -19,6 +19,7 @@ namespace ExclusiveTimer
         private List<Label> Labels;
         private List<TextBox> TextBoxes;
         private string ExportFile;
+        private NotifyIcon trayIcon;
 
         protected override void OnLoad(EventArgs e)
         {
@@ -31,15 +32,16 @@ namespace ExclusiveTimer
             this.Activate();
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            var myTrayIcon = trayIcon;
+            this.trayIcon = null;
+            myTrayIcon.Dispose();
+        }
+
         public ExclusiveTimer()
         {
-            var trayIcon = new NotifyIcon();
-            trayIcon.Text = "ExclusiveTimer";
-            trayIcon.Icon = new Icon(SystemIcons.Application, 40, 40);
-            trayIcon.Visible = true;
-            trayIcon.Click += TrayIconClicked;
-            trayIcon.DoubleClick += TrayIconClicked;
-
+            ShowTrayIcon();
 
             ExportFile = @"D:\Logs\ExclusiveTimer-" + DateTime.Now.ToString("yyyy-MM-dd_HHmm") + ".txt";
             TimerValues = new int[RowCount];
@@ -84,6 +86,16 @@ namespace ExclusiveTimer
                 this.Height = (1 + RowCount) * RowHeight;
                 this.Width = 400;
             }
+        }
+
+        private void ShowTrayIcon()
+        {
+            this.trayIcon = new NotifyIcon();
+            this.trayIcon.Text = "ExclusiveTimer";
+            this.trayIcon.Icon = new Icon(SystemIcons.Application, 40, 40);
+            this.trayIcon.Visible = true;
+            this.trayIcon.Click += this.TrayIconClicked;
+            this.trayIcon.DoubleClick += this.TrayIconClicked;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
