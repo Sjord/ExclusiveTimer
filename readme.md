@@ -18,7 +18,7 @@ While ExclusiveTimer is running, it writes the current descriptions and times to
 Screenshot
 ----------
 
-![ExclusiveTimer screenshot, with exported file open in Notepad](ExclusiveTimerShot.png)
+![ExclusiveTimer screenshot, with exported file open in Notepad](https://github.com/Sjord/ExclusiveTimer/raw/master/ExclusiveTimerShot.png)
 
 Author
 ------
