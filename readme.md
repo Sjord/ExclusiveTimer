@@ -15,6 +15,11 @@ Export
 
 While ExclusiveTimer is running, it writes the current descriptions and times to a file in D:\Logs.
 
+Screenshot
+----------
+
+![ExclusiveTimer screenshot, with exported file open in Notepad](ExclusiveTimerShot.png)
+
 Author
 ------
 
