@@ -14,7 +14,7 @@ namespace ExclusiveTimer
     {
         private const int RowCount = 10;
         private const int RowHeight = 22;
-        private int ActiveTimer = -1;
+        private int ActiveTimer = 0;
         private int[] TimerValues;
         private List<Label> Labels;
         private List<TextBox> TextBoxes;
@@ -24,7 +24,7 @@ namespace ExclusiveTimer
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            ShowInTaskbar = false;
+            //ShowInTaskbar = false;
         }
 
         public void TrayIconClicked(object sender, EventArgs eventArgs)
@@ -124,6 +124,11 @@ namespace ExclusiveTimer
         private void timer2_Tick(object sender, EventArgs e)
         {
             Export();
+        }
+
+        private void ExclusiveTimer_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

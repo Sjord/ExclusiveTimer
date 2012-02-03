@@ -52,6 +52,7 @@
             this.ClientSize = new System.Drawing.Size(292, 273);
             this.Name = "ExclusiveTimer";
             this.Text = "ExclusiveTimer";
+            this.Load += new System.EventHandler(this.ExclusiveTimer_Load);
             this.ResumeLayout(false);
 
         }
