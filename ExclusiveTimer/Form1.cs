@@ -54,25 +54,15 @@ namespace ExclusiveTimer
                 TimerValues[i] = 0;
                 var textbox = new TextBox()
                 {
-                    Width = 200,
+                    Width = 340,
                     Top = i * RowHeight,
                     Left = 0,
                     Height = RowHeight,
+                    Tag = i
                 };
+                textbox.GotFocus += this.OnTextBoxGotFocus;
                 this.Controls.Add(textbox);
                 TextBoxes.Add(textbox);
-                
-                var button = new Button()
-                {
-                    Text = "Start",
-                    Top = i * RowHeight,
-                    Left = 200,
-                    Width = 100,
-                    Height = RowHeight,
-                    Tag = i,
-                };
-                button.Click += OnStartButtonClicked;
-                this.Controls.Add(button);
 
                 var label = new Label() {
                     Text = "0:00",
@@ -109,15 +99,15 @@ namespace ExclusiveTimer
         private void Export() {
             var writer = new StreamWriter(ExportFile);
             for (int i = 0; i < RowCount; i++) {
-                writer.WriteLine(string.Format("{0} {1}:{2:00}", TextBoxes[i].Text.PadRight(40), TimerValues[i] / 60, TimerValues[i] % 60));
+                writer.WriteLine(string.Format("{0} {1}:{2:00}", TextBoxes[i].Text.PadRight(60), TimerValues[i] / 60, TimerValues[i] % 60));
             }
             writer.Close();
         }
 
-        protected void OnStartButtonClicked(object sender, EventArgs e)
+        protected void OnTextBoxGotFocus(object sender, EventArgs e)
         {
-            var button = (Button) sender;
-            var index = (int) button.Tag;
+            var textBox = (TextBox) sender;
+            var index = (int)textBox.Tag;
             ActiveTimer = index;
         }
 
